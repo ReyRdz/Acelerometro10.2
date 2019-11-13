@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" id="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;"/>
+<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<script type="text/javascript" charset="utf-8">
+var awID;
+var ac;
+function onBodyLoad() { document.addEventListener("deviceready", onDeviceReady,false);}
+function onDeviceReady() { ac = document.getElementById('accelInfo'); var accelOptions = { frequency: 500 };
+awID = navigator.accelerometer.watchAcceleration(onAccelSuccess, onAccelFailure, accelOptions);}
+function onAccelSuccess(accel) { ac.innerHTML = "<b>X:</b> " + accel.x + "<br /><b>Y:</b> " + accel.y + "<br /><b>Z:</b> " + accel.z; }
+function onAccelFailure() { alert("Accelerometer error! Clearing Watch ID"); navigator.accelerometer.clearWatch(awID);}
+</script>
+</head>
+<body onload="onBodyLoad()">
+<h1>Example 10-2</h1>
+<p>Apache PhoneGap Accelerometer Watcher</p>
+<p><b>Current Orientation</b><hr/></p>
+<p id="accelInfo">Waiting for PhoneGap to initialize.</p>
+<hr/>
+</body>
+</html>
